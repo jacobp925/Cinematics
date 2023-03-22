@@ -1,0 +1,11 @@
+name: Cinematics
+version: 1.0
+author: Jacob
+main: me.jacob.cinematics.Cinematics
+api-version: 1.19
+commands:
+  cinematics:
+    description: Create and manage cinematics
+    aliases: [ cinematic ]
+    permission: cinematics.admin
+    usage: /cinematics
