@@ -5,13 +5,9 @@ import lombok.Setter;
 import me.jacob.cinematics.Cinematics;
 import me.jacob.cinematics.api.events.CinematicEndEvent;
 import me.jacob.cinematics.objects.cinematics.Cinematic;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_19_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -41,7 +37,7 @@ public class CinematicPlayer {
     private String creatingCinematicName;
     private ArrayList<Location> waypoints;
 
-    private LinkedList<Packet<ClientGamePacketListener>> queuedPackets;
+    private LinkedList<Object> queuedPackets;
 
     public CinematicPlayer(Player p) {
         this.uuid = p.getUniqueId();
@@ -97,8 +93,7 @@ public class CinematicPlayer {
         this.tasks.clear();
 
         if (Cinematics.getInstance().getCinematicHandler().isDisableChat()) {
-            ServerGamePacketListenerImpl serverGamePacketListener = ((CraftPlayer) p).getHandle().connection;
-            queuedPackets.forEach(serverGamePacketListener::send);
+            Cinematics.getInstance().getNmsVersion().processChat(p, this);
         }
 
         this.queuedPackets.clear();

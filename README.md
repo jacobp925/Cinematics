@@ -2,7 +2,7 @@
 
 ## 📃 About
 
-**Version:** `1.19.4`
+**Versions:** `1.19.4` `1.19.3` `1.18.2` `1.17.1` `1.16.5`
 
 > Allows users to create cinematics and chain them together to create cutscenes, intros, tutorials, etc. Unlike other
 cinematic plugins, this one supports interpolated spline curves, which means you can add multiple points and have

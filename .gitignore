@@ -3,3 +3,6 @@
 /libs/
 /out/
 /target/
+
+# Modules
+modules/*/target

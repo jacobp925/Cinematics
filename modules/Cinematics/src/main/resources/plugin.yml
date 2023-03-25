@@ -2,7 +2,8 @@ name: Cinematics
 version: 1.0
 author: Jacob
 main: me.jacob.cinematics.Cinematics
-api-version: 1.19
+api-version: 1.16
+softdepend: [ Multiverse-Core ]
 commands:
   cinematics:
     description: Create and manage cinematics
