@@ -42,7 +42,6 @@ public class CinematicsCommand implements CommandExecutor {
 
                 player.setCreatingCinematic(true);
                 player.setCreatingCinematicName(name);
-                player.setWaypoints(new ArrayList<>());
 
                 sender.sendMessage(ColorUtil.color("&aType 'add' to add a waypoint, 'end [spline] [speed] [world time] [smoothness]' to end & save, and 'cancel' to cancel."));
 

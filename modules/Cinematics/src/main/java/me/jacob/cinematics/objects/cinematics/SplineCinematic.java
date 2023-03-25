@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -19,11 +19,11 @@ import java.util.stream.IntStream;
 @Setter
 public class SplineCinematic extends Cinematic {
 
-    public SplineCinematic(String name, int speed, int worldTime, ArrayList<Location> waypoints) {
+    public SplineCinematic(String name, int speed, int worldTime, LinkedList<Location> waypoints) {
         this(name, speed, worldTime, waypoints, false);
     }
 
-    public SplineCinematic(String name, int speed, int worldTime, ArrayList<Location> waypoints, boolean creating) {
+    public SplineCinematic(String name, int speed, int worldTime, LinkedList<Location> waypoints, boolean creating) {
         super(name, speed, worldTime, waypoints);
         if (creating) Cinematics.getInstance().getCinematicHandler().saveCinematic(this);
     }

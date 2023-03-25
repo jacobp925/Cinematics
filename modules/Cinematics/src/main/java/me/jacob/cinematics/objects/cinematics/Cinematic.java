@@ -12,7 +12,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -27,7 +26,7 @@ public abstract class Cinematic {
     private int worldTime;
     private LinkedList<Location> waypoints;
 
-    public Cinematic(String name, int speed, int worldTime, ArrayList<Location> waypoints) {
+    public Cinematic(String name, int speed, int worldTime, LinkedList<Location> waypoints) {
         this.name = name;
         this.speed = speed;
         this.worldTime = worldTime;

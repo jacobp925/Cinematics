@@ -9,7 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Objects;
 import java.util.logging.Level;
 
@@ -44,7 +44,7 @@ public class CinematicHandler {
         for (String cinematic : cinematics.getKeys(false)) {
             ConfigurationSection section = cinematics.getConfigurationSection(cinematic);
 
-            ArrayList<Location> waypoints = new ArrayList<>();
+            LinkedList<Location> waypoints = new LinkedList<>();
             for (String waypoint : Objects.requireNonNull(section).getStringList("waypoints")) {
                 String[] parts = waypoint.split(",");
                 waypoints.add(new Location(Bukkit.getWorld(parts[0]), Double.parseDouble(parts[1]), Double.parseDouble(parts[2]), Double.parseDouble(parts[3]), Float.parseFloat(parts[4]), Float.parseFloat(parts[5])));

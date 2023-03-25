@@ -32,7 +32,7 @@ public class CinematicPlayer {
 
     private boolean creatingCinematic;
     private String creatingCinematicName;
-    private ArrayList<Location> waypoints;
+    private LinkedList<Location> waypoints;
 
     private LinkedList<Object> queuedPackets;
 
@@ -40,7 +40,7 @@ public class CinematicPlayer {
         this.uuid = p.getUniqueId();
         this.tasks = new ArrayList<>();
         this.cinematicQueue = new LinkedList<>();
-        this.waypoints = new ArrayList<>();
+        this.waypoints = new LinkedList<>();
         this.queuedPackets = new LinkedList<>();
         players.put(this.uuid, this);
     }

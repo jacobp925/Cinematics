@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 @Getter
 @Setter
@@ -17,11 +17,11 @@ public class LinearCinematic extends Cinematic {
 
     private double smoothness;
 
-    public LinearCinematic(String name, int speed, int worldTime, double smoothness, ArrayList<Location> waypoints) {
+    public LinearCinematic(String name, int speed, int worldTime, double smoothness, LinkedList<Location> waypoints) {
         this(name, speed, worldTime, smoothness, waypoints, false);
     }
 
-    public LinearCinematic(String name, int speed, int worldTime, double smoothness, ArrayList<Location> waypoints, boolean creating) {
+    public LinearCinematic(String name, int speed, int worldTime, double smoothness, LinkedList<Location> waypoints, boolean creating) {
         super(name, speed, worldTime, waypoints);
         this.smoothness = smoothness;
         if (creating) Cinematics.getInstance().getCinematicHandler().saveCinematic(this);
