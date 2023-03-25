@@ -35,7 +35,7 @@ public class CinematicsCommand implements CommandExecutor {
             if (args[0].equalsIgnoreCase("create")) {
 
                 String name = args[1];
-                if (Cinematic.getCinematics().stream().anyMatch(cinematicMovement -> cinematicMovement.getName().equalsIgnoreCase(name))) {
+                if (Cinematic.getCinematics().containsKey(name)) {
                     sender.sendMessage(ColorUtil.color("&cThis cinematic already exists"));
                     return true;
                 }
@@ -49,9 +49,9 @@ public class CinematicsCommand implements CommandExecutor {
             } else if (args[0].equalsIgnoreCase("play")) {
 
                 String name = args[1];
-                Optional<Cinematic> optional = Cinematic.getCinematics().stream().filter(cinematicMovement -> cinematicMovement.getName().equalsIgnoreCase(name)).findAny();
-                if (optional.isPresent()) {
-                    sender.sendMessage(ColorUtil.color("&aStarting cinematic " + optional.get().getName()));
+                Cinematic cinematic = Cinematic.getCinematics().getOrDefault(name, null);
+                if (cinematic != null) {
+                    sender.sendMessage(ColorUtil.color("&aStarting cinematic " + cinematic.getName()));
                     player.playCinematics(List.of(args[1]));
                 } else {
                     sender.sendMessage(ColorUtil.color("&cThis cinematic doesn't exist"));
@@ -76,7 +76,7 @@ public class CinematicsCommand implements CommandExecutor {
                 player.exitCinematic();
                 sender.sendMessage(ColorUtil.color("&aEnded cinematic"));
             } else if (args[0].equalsIgnoreCase("list")) {
-                sender.sendMessage(ColorUtil.color("&f&lCinematics:&a " + String.join(",", Cinematic.getCinematics().stream().map(Cinematic::getName).toList())));
+                sender.sendMessage(ColorUtil.color("&f&lCinematics:&a " + String.join(",", Cinematic.getCinematics().keySet())));
 
             } else if (args[0].equalsIgnoreCase("reload")) {
                 sender.sendMessage(ColorUtil.color("&aReloading cinematics from config..."));

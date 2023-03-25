@@ -13,16 +13,13 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitTask;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Getter
 @Setter
 public class CinematicPlayer {
 
-    @Getter private static ArrayList<CinematicPlayer> players = new ArrayList<>();
+    @Getter private static HashMap<UUID, CinematicPlayer> players = new HashMap<>();
 
     private UUID uuid;
 
@@ -45,19 +42,19 @@ public class CinematicPlayer {
         this.cinematicQueue = new LinkedList<>();
         this.waypoints = new ArrayList<>();
         this.queuedPackets = new LinkedList<>();
-        players.add(this);
+        players.put(this.uuid, this);
     }
 
     public void remove() {
         tasks.forEach(BukkitTask::cancel);
-        players.remove(this);
+        players.remove(this.uuid);
     }
 
     public void playCinematics(List<String> names) {
 
         exitCinematic();
 
-        List<String> cinematicNames = Cinematic.getCinematics().stream().map(Cinematic::getName).toList();
+        Set<String> cinematicNames = Cinematic.getCinematics().keySet();
         this.cinematicQueue.addAll(names.stream().filter(cinematicNames::contains).toList());
 
         Player p = Bukkit.getPlayer(this.uuid);
@@ -108,7 +105,7 @@ public class CinematicPlayer {
     }
 
     public static CinematicPlayer getByUUID(UUID uuid) {
-        return players.stream().filter(cinematicPlayer -> cinematicPlayer.getUuid().equals(uuid)).findAny().orElse(null);
+        return players.get(uuid);
     }
 
 

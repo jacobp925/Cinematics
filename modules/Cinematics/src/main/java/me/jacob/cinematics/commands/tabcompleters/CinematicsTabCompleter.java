@@ -43,13 +43,13 @@ public class CinematicsTabCompleter implements TabCompleter {
             if (args[0].equalsIgnoreCase("play") || args[0].equalsIgnoreCase("playsequence")) {
 
                 if (args[1].isEmpty()) {
-                    subCommands.addAll(Cinematic.getCinematics().stream().map(Cinematic::getName).toList());
+                    subCommands.addAll(Cinematic.getCinematics().keySet());
                     return subCommands;
                 }
 
-                for (Cinematic cinematic : Cinematic.getCinematics()) {
-                    if (cinematic.getName().startsWith(args[1])) {
-                        subCommands.add(cinematic.getName());
+                for (String cinematicName : Cinematic.getCinematics().keySet()) {
+                    if (cinematicName.startsWith(args[1])) {
+                        subCommands.add(cinematicName);
                     }
                 }
                 return subCommands;
@@ -58,9 +58,9 @@ public class CinematicsTabCompleter implements TabCompleter {
         } else if (args.length > 2) {
 
             if (args[0].equalsIgnoreCase("playsequence")) {
-                for (Cinematic cinematic : Cinematic.getCinematics()) {
-                    if (cinematic.getName().startsWith(args[args.length - 1]) || args[args.length - 1].isEmpty()) {
-                        subCommands.add(cinematic.getName());
+                for (String cinematicName : Cinematic.getCinematics().keySet()) {
+                    if (cinematicName.startsWith(args[args.length - 1]) || args[args.length - 1].isEmpty()) {
+                        subCommands.add(cinematicName);
                     }
                 }
                 return subCommands;

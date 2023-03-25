@@ -85,7 +85,7 @@ public class CinematicHandler {
     }
 
     public Cinematic getCinematic(String name) {
-        return Cinematic.getCinematics().stream().filter(c -> c.getName().equalsIgnoreCase(name)).findAny().orElse(null);
+        return Cinematic.getCinematics().get(name);
     }
 
 }

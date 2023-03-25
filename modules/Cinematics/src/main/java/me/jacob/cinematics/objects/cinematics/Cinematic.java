@@ -13,13 +13,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 @Getter
 @Setter
 public abstract class Cinematic {
 
-    @Getter private static ArrayList<Cinematic> cinematics = new ArrayList<>();
+    @Getter private static HashMap<String, Cinematic> cinematics = new HashMap<>();
 
     private String name;
     private int speed;
@@ -31,7 +32,7 @@ public abstract class Cinematic {
         this.speed = speed;
         this.worldTime = worldTime;
         this.waypoints = new LinkedList<>(waypoints);
-        cinematics.add(this);
+        cinematics.put(this.name, this);
     }
 
     public void play(CinematicPlayer player, Player bukkitPlayer, boolean delay) {
