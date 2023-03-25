@@ -7,6 +7,7 @@ import me.jacob.cinematics.handler.CinematicHandler;
 import me.jacob.cinematics.handler.TitleHandler;
 import me.jacob.cinematics.listeners.PlayerListener;
 import me.jacob.cinematics.nms.NMSVersion;
+import me.jacob.cinematics.objects.CinematicPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -42,6 +43,7 @@ public class Cinematics extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        CinematicPlayer.getPlayers().values().forEach(CinematicPlayer::exitCinematic);
         plugin = null;
         getServer().getConsoleSender().sendMessage("Cinematics has been disabled");
     }
